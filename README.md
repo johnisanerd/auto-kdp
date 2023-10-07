@@ -34,7 +34,7 @@ The CSV file may look something like this:
 | all                    | Where is my chicken  | Jane            | Smith          |      |
 | pricing:publish:scrape | Where is my froggy?  | Jane            | Smith          |      |
 
-Column names matter, this is how the tool knows what is what (full list in [keys.js](https://github.com/elutek/auto-kdp/blob/main/src/keys.js)). The column **action** tells the tool what to do. 
+Column names matter, this is how the tool knows what is what (full list in [keys.js](https://github.com/elutek/auto-kdp/blob/main/src/keys.ts)). The column **action** tells the tool what to do. 
 
 Run it something like:
 
@@ -62,7 +62,7 @@ NOTE: auto-kdp does not save your KDP credentionals, or transfer it anywhere - t
   - Set `action` to empty.
   - Tip: The [Edit csv](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv) extension to VS Code is very useful (I'm not associated with them).
 - Step 4: Try with `action` empty. This means `auto-kdp` will parse all books but do nothing, except signing into your KDP account.
-  - `ts-node ./auto-kdp/src/index.ts --books books.csv --config books.conf --content-dir book/ --user-data ./user_data --verbose --keep-open --headless=no`
+  - `ts-node ./src/index.ts --books ./test-data/books.csv --config ./test-data/books.conf content-dir book/ --user-data ./user_data --verbose --keep-open --headless=no`
   - "keep open" means that browser tabs will not be closed.
   - "headless=no" means that you can see the browser and observe actions that it's doing for you. The only action needed is to sign into your KDP account.
   - If you get errors, check the syntax of the CSV file.
@@ -148,9 +148,9 @@ Common issues
 
 ## To add a new custom key
 
-1. First add to keys.js
-2. Then add to book.js in the constructor
-3. Make all tests pass, which typically update book.js, test-utils.js and some random locations
+1. First add to ```src/book/keys.ts```
+2. Then add to ```src/book/book.ts``` in the constructor
+3. Make all tests pass, which typically update book.ts, test-utils.ts and some random locations
 4. Use the new fields in some actions update desired src/action/...
 
 ## Tests
